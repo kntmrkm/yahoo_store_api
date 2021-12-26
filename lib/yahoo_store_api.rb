@@ -22,12 +22,15 @@ module YahooStoreApi
     include YahooStoreApi::Stock
     include YahooStoreApi::Publish
 
-    def initialize(seller_id:, application_id:, application_secret:, authorization_code: nil, redirect_uri: nil, refresh_token: nil)
+    # def initialize(seller_id:, application_id:, application_secret:, authorization_code: nil, redirect_uri: nil, refresh_token: nil)
+    def initialize(seller_id:, access_token: nil)
+      # @seller_id = seller_id
+      # @application_id = application_id
+      # @application_secret = application_secret
+      # @redirect_uri = redirect_uri ? "&redirect_uri=" + CGI.escape(redirect_uri) : nil
+      # @access_token = reflesh_access_token(refresh_token) || get_access_token(authorization_code)
       @seller_id = seller_id
-      @application_id = application_id
-      @application_secret = application_secret
-      @redirect_uri = redirect_uri ? "&redirect_uri=" + CGI.escape(redirect_uri) : nil
-      @access_token = reflesh_access_token(refresh_token) || get_access_token(authorization_code)
+      @access_token = access_token
     end
 
     private
