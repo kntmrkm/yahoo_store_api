@@ -12,5 +12,16 @@ module YahooStoreApi
         r.body = request
       }
     end
+
+    def upload_item_csv(csv)
+      request = {
+        type: 1,
+        file: Faraday::UploadIO.new(StringIO.new(csv), "text/csv"),
+      }
+
+      handler connection("uploadItemFile", with_seller_id: true).post { |r|
+        r.body = request
+      }
+    end
   end
 end
